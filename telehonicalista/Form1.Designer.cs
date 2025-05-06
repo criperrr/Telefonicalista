@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             gridData = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
             name = new DataGridViewTextBoxColumn();
             telefone = new DataGridViewTextBoxColumn();
             lbl1 = new Label();
@@ -45,12 +46,19 @@
             gridData.AllowUserToAddRows = false;
             gridData.AllowUserToDeleteRows = false;
             gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridData.Columns.AddRange(new DataGridViewColumn[] { name, telefone });
+            gridData.Columns.AddRange(new DataGridViewColumn[] { ID, name, telefone });
             gridData.Location = new Point(12, 12);
             gridData.Name = "gridData";
             gridData.ReadOnly = true;
-            gridData.Size = new Size(250, 426);
+            gridData.Size = new Size(389, 426);
             gridData.TabIndex = 0;
+            gridData.Click += gridData_Click;
+            // 
+            // ID
+            // 
+            ID.HeaderText = "ID";
+            ID.Name = "ID";
+            ID.ReadOnly = true;
             // 
             // name
             // 
@@ -133,6 +141,7 @@
             Controls.Add(gridData);
             Name = "telefonica";
             Text = "Form1";
+            Click += telefonica_Click;
             ((System.ComponentModel.ISupportInitialize)gridData).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -147,6 +156,7 @@
         private Button cadastra;
         private MaskedTextBox numero;
         private Button remove;
+        private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn name;
         private DataGridViewTextBoxColumn telefone;
     }
