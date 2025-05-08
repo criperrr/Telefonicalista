@@ -25,7 +25,7 @@ namespace telehonicalista
         }
         private void cadastra_Click(object sender, EventArgs e)
         {
-            if (cadastra.Text == "Cadastrar" || gridData.select == 0)
+            if (cadastra.Text == "Cadastrar" || gridData.SelectedCells.Count == 0)
             {
                 if (String.IsNullOrEmpty(nome.Text) || String.IsNullOrEmpty(numero.Text))
                 {
