@@ -54,7 +54,7 @@
             gridData.RowHeadersWidth = 51;
             gridData.Size = new Size(357, 568);
             gridData.TabIndex = 0;
-            gridData.Click += gridData_Click;
+            gridData.CellClick += gridData_CellClick;
             // 
             // ID
             // 

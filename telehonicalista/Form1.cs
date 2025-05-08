@@ -29,6 +29,7 @@ namespace telehonicalista
         {
             if (cadastra.Text == "Cadastrar")
             {
+
                 if (String.IsNullOrEmpty(nome.Text) || String.IsNullOrEmpty(numero.Text))
                 {
                     MessageBox.Show("Preencha todos os campos corretamente.");
@@ -42,6 +43,8 @@ namespace telehonicalista
                 int id = Length(lista) > 0 ? (int.Parse(lista[Length(lista) - 1][0]) + 1) : 1;
                 lista[Length(lista)] = new string[] { id.ToString(), nome.Text, numero.Text };
                 Atualizar();
+                nome.Text = null;
+                numero.Text = null;
             }
             else if (cadastra.Text == "Editar")
             {
@@ -54,6 +57,8 @@ namespace telehonicalista
                 string id = gridData.Rows[row].Cells[0].Value.ToString();
                 lista[row] = new string[] { id, nome.Text, numero.Text };
                 Atualizar();
+                nome.Text = null;
+                numero.Text = null;
             }
         }
 
@@ -88,19 +93,26 @@ namespace telehonicalista
                 lista[i] = lista[i + 1];
             }
             lista[Length(lista)] = null;
-            
-            Atualizar();
-        }
 
-        private void gridData_Click(object sender, EventArgs e)
-        {
-            cadastra.Text = "Editar";
+            Atualizar();
+            nome.Text = null;
+            numero.Text = null;
+            cadastra.Text = "Cadastrar";
         }
 
         private void telefonica_Click(object sender, EventArgs e)
         {
             cadastra.Text = "Cadastrar";
-            gridData.ClearSelection();
+        }
+
+        private void gridData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gridData.SelectedCells.Count == 0)
+                return;
+            cadastra.Text = "Editar";
+            int row = gridData.SelectedCells[0].RowIndex;
+            nome.Text = gridData.Rows[row].Cells[1].Value.ToString();
+            numero.Text = gridData.Rows[row].Cells[2].Value.ToString();
         }
     }
 }
