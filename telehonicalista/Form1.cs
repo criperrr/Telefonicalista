@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace telehonicalista
 {
     public partial class telefonica : Form
@@ -25,7 +27,7 @@ namespace telehonicalista
         }
         private void cadastra_Click(object sender, EventArgs e)
         {
-            if (cadastra.Text == "Cadastrar" || gridData.SelectedCells.Count == 0)
+            if (cadastra.Text == "Cadastrar")
             {
                 if (String.IsNullOrEmpty(nome.Text) || String.IsNullOrEmpty(numero.Text))
                 {
@@ -41,7 +43,20 @@ namespace telehonicalista
                 lista[Length(lista)] = new string[] { id.ToString(), nome.Text, numero.Text };
                 Atualizar();
             }
+            else if (cadastra.Text == "Editar")
+            {
+                if (String.IsNullOrEmpty(nome.Text) || String.IsNullOrEmpty(numero.Text))
+                {
+                    MessageBox.Show("Preencha todos os campos corretamente.");
+                    return;
+                }
+                int row = gridData.SelectedCells[0].RowIndex;
+                string id = gridData.Rows[row].Cells[0].Value.ToString();
+                lista[row] = new string[] { id, nome.Text, numero.Text };
+                Atualizar();
+            }
         }
+
         int Length(string[][] e)
         {
             int itens = 0;
