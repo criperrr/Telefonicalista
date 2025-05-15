@@ -27,7 +27,7 @@ namespace telehonicalista
         }
         private void cadastra_Click(object sender, EventArgs e)
         {
-            if (cadastra.Text == "Cadastrar")
+            if (cadastra.Text == "C&adastrar")
             {
 
                 if (String.IsNullOrEmpty(nome.Text) || String.IsNullOrEmpty(numero.Text))
@@ -46,7 +46,7 @@ namespace telehonicalista
                 nome.Text = null;
                 numero.Text = null;
             }
-            else if (cadastra.Text == "Editar")
+            else if (cadastra.Text == "&Editar")
             {
                 if (String.IsNullOrEmpty(nome.Text) || String.IsNullOrEmpty(numero.Text))
                 {
@@ -97,19 +97,19 @@ namespace telehonicalista
             Atualizar();
             nome.Text = null;
             numero.Text = null;
-            cadastra.Text = "Cadastrar";
+            cadastra.Text = "C&adastrar";
         }
 
         private void telefonica_Click(object sender, EventArgs e)
         {
-            cadastra.Text = "Cadastrar";
+            cadastra.Text = "C&adastrar";
         }
 
         private void gridData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (gridData.SelectedCells.Count == 0)
                 return;
-            cadastra.Text = "Editar";
+            cadastra.Text = "&Editar";
             int row = gridData.SelectedCells[0].RowIndex;
             nome.Text = gridData.Rows[row].Cells[1].Value.ToString();
             numero.Text = gridData.Rows[row].Cells[2].Value.ToString();

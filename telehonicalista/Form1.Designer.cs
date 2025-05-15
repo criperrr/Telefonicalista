@@ -47,13 +47,13 @@
             gridData.AllowUserToDeleteRows = false;
             gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridData.Columns.AddRange(new DataGridViewColumn[] { ID, name, telefone });
-            gridData.Location = new Point(14, 16);
-            gridData.Margin = new Padding(3, 4, 3, 4);
+            gridData.Location = new Point(12, 12);
             gridData.Name = "gridData";
             gridData.ReadOnly = true;
             gridData.RowHeadersWidth = 51;
-            gridData.Size = new Size(357, 568);
+            gridData.Size = new Size(312, 426);
             gridData.TabIndex = 0;
+            gridData.TabStop = false;
             gridData.CellClick += gridData_CellClick;
             // 
             // ID
@@ -63,7 +63,7 @@
             ID.MinimumWidth = 6;
             ID.Name = "ID";
             ID.ReadOnly = true;
-            ID.Width = 53;
+            ID.Width = 43;
             // 
             // name
             // 
@@ -84,67 +84,63 @@
             // lbl1
             // 
             lbl1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl1.Location = new Point(427, 24);
+            lbl1.Location = new Point(374, 18);
             lbl1.Name = "lbl1";
-            lbl1.Size = new Size(80, 37);
+            lbl1.Size = new Size(70, 28);
             lbl1.TabIndex = 1;
             lbl1.Text = "Nome: ";
             // 
             // label1
             // 
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(398, 61);
+            label1.Location = new Point(348, 46);
             label1.Name = "label1";
-            label1.Size = new Size(109, 35);
+            label1.Size = new Size(95, 26);
             label1.TabIndex = 2;
             label1.Text = "Número: ";
             // 
             // nome
             // 
-            nome.Location = new Point(514, 31);
-            nome.Margin = new Padding(3, 4, 3, 4);
+            nome.Location = new Point(450, 23);
             nome.Name = "nome";
-            nome.Size = new Size(114, 27);
-            nome.TabIndex = 3;
+            nome.Size = new Size(100, 23);
+            nome.TabIndex = 0;
             // 
             // cadastra
             // 
             cadastra.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cadastra.Location = new Point(409, 107);
-            cadastra.Margin = new Padding(3, 4, 3, 4);
+            cadastra.Location = new Point(358, 80);
             cadastra.Name = "cadastra";
-            cadastra.Size = new Size(219, 68);
-            cadastra.TabIndex = 5;
-            cadastra.Text = "Cadastrar";
+            cadastra.Size = new Size(192, 51);
+            cadastra.TabIndex = 2;
+            cadastra.Text = "C&adastrar";
             cadastra.UseVisualStyleBackColor = true;
             cadastra.Click += cadastra_Click;
             // 
             // numero
             // 
-            numero.Location = new Point(514, 69);
-            numero.Margin = new Padding(3, 4, 3, 4);
+            numero.Location = new Point(450, 52);
             numero.Mask = "(00) 00000-0000";
             numero.Name = "numero";
-            numero.Size = new Size(114, 27);
-            numero.TabIndex = 6;
+            numero.Size = new Size(100, 23);
+            numero.TabIndex = 1;
             // 
             // remove
             // 
             remove.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            remove.Location = new Point(427, 183);
-            remove.Margin = new Padding(3, 4, 3, 4);
+            remove.Location = new Point(374, 137);
             remove.Name = "remove";
-            remove.Size = new Size(171, 55);
-            remove.TabIndex = 10;
-            remove.Text = "Remover";
+            remove.Size = new Size(150, 41);
+            remove.TabIndex = 3;
+            remove.Text = "&Remover";
             remove.UseVisualStyleBackColor = true;
             remove.Click += remove_Click;
             // 
             // telefonica
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(654, 600);
+            ClientSize = new Size(572, 450);
             Controls.Add(remove);
             Controls.Add(numero);
             Controls.Add(cadastra);
@@ -152,7 +148,6 @@
             Controls.Add(label1);
             Controls.Add(lbl1);
             Controls.Add(gridData);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "telefonica";
             Text = "Form1";
             Click += telefonica_Click;
