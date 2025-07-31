@@ -1,78 +1,59 @@
 using System.Windows.Forms;
+using telehonicalista.Models;
 
 namespace telehonicalista
 {
     public partial class telefonica : Form
     {
-        string[][] lista;
-        readonly int tamanho = 100;
+        List<Contato> lista;
+        string selectedId;
         public telefonica()
         {
             InitializeComponent();
-            lista = new string[tamanho][];
+            lista = new List<Contato>();
         }
         void Atualizar()
         {
             gridData.Rows.Clear();
-            for (int i = 0; i < Length(lista); i++)
+            for (int i = 0; i < lista.Count; i++)
             {
                 DataGridViewRow row = new DataGridViewRow();
                 row.CreateCells(gridData);
-                for (int j = 0; j < 3; j++)
-                {
-                    row.Cells[j].Value = lista[i][j];
-                }
+                row.Cells[0].Value = lista[i].Id;
+                row.Cells[1].Value = lista[i].Nome;
+                row.Cells[2].Value = lista[i].Telefone;
                 gridData.Rows.Add(row);
             }
         }
         private void cadastra_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(nome.Text) || String.IsNullOrEmpty(numero.Text))
+            {
+                MessageBox.Show("Preencha todos os campos corretamente.");
+                return;
+            }
             if (cadastra.Text == "C&adastrar")
             {
+                int id = 1;
+                if(lista.Count > 0)
+                    id = lista.Max(c => c.Id) + 1;
+                Contato contato = new Contato() { Id=id, Nome=nome.Text, Telefone=numero.Text };
 
-                if (String.IsNullOrEmpty(nome.Text) || String.IsNullOrEmpty(numero.Text))
-                {
-                    MessageBox.Show("Preencha todos os campos corretamente.");
-                    return;
-                }
-                if (Length(lista) == tamanho)
-                {
-                    MessageBox.Show("Limite alcançado (100)");
-                    return;
-                }
-                int id = Length(lista) > 0 ? (int.Parse(lista[Length(lista) - 1][0]) + 1) : 1;
-                lista[Length(lista)] = new string[] { id.ToString(), nome.Text, numero.Text };
+                lista.Add(contato);
                 Atualizar();
                 nome.Text = null;
                 numero.Text = null;
             }
             else if (cadastra.Text == "&Editar")
             {
-                if (String.IsNullOrEmpty(nome.Text) || String.IsNullOrEmpty(numero.Text))
-                {
-                    MessageBox.Show("Preencha todos os campos corretamente.");
-                    return;
-                }
                 int row = gridData.SelectedCells[0].RowIndex;
-                string id = gridData.Rows[row].Cells[0].Value.ToString();
-                lista[row] = new string[] { id, nome.Text, numero.Text };
+                lista[row].Nome = nome.Text;
+                lista[row].Telefone = numero.Text;
+
                 Atualizar();
                 nome.Text = null;
                 numero.Text = null;
             }
-        }
-
-        int Length(string[][] e)
-        {
-            int itens = 0;
-            for (int i = 0; i < e.Length; i++)
-            {
-                if (e[i] != null)
-                {
-                    itens++;
-                }
-            }
-            return itens;
         }
         private void remove_Click(object sender, EventArgs e)
         {
@@ -84,16 +65,13 @@ namespace telehonicalista
             DataGridViewCell cell = gridData.SelectedCells[0];
             int linha = cell.RowIndex;
             string id = gridData.Rows[linha].Cells[0].Value.ToString();
-            int indice = 0;
-            for (indice = 0; indice < Length(lista) && lista[indice][0] != id; indice++) ;
-            DialogResult confirmResult = MessageBox.Show($"Tem certeza que deseja remover {lista[indice][1]}?", "Confirmação", MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.No) return;
-            for (int i = indice; i < Length(lista); i++)
-            {
-                lista[i] = lista[i + 1];
-            }
-            lista[Length(lista)] = null;
+            int indice = lista.FindIndex(item => item.Id.ToString() == id);
+            if (indice == -1) return;
 
+            DialogResult confirmResult = MessageBox.Show($"Tem certeza que deseja remover {lista[indice].Nome}?", "Confirmação", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.No) return;
+
+            lista.RemoveAt(indice);
             Atualizar();
             nome.Text = null;
             numero.Text = null;
