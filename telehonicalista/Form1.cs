@@ -6,7 +6,6 @@ namespace telehonicalista
     public partial class telefonica : Form
     {
         List<Contato> lista;
-        string selectedId;
         public telefonica()
         {
             InitializeComponent();
@@ -17,12 +16,7 @@ namespace telehonicalista
             gridData.Rows.Clear();
             for (int i = 0; i < lista.Count; i++)
             {
-                DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(gridData);
-                row.Cells[0].Value = lista[i].Id;
-                row.Cells[1].Value = lista[i].Nome;
-                row.Cells[2].Value = lista[i].Telefone;
-                gridData.Rows.Add(row);
+                gridData.Rows.Add(lista[i].Id, lista[i].Nome, lista[i].Telefone);
             }
         }
         private void cadastra_Click(object sender, EventArgs e)
@@ -37,6 +31,7 @@ namespace telehonicalista
                 int id = 1;
                 if(lista.Count > 0)
                     id = lista.Max(c => c.Id) + 1;
+
                 Contato contato = new Contato() { Id=id, Nome=nome.Text, Telefone=numero.Text };
 
                 lista.Add(contato);
@@ -44,6 +39,8 @@ namespace telehonicalista
                 nome.Text = null;
                 numero.Text = null;
             }
+
+            
             else if (cadastra.Text == "&Editar")
             {
                 int row = gridData.SelectedCells[0].RowIndex;
@@ -53,7 +50,7 @@ namespace telehonicalista
                 Atualizar();
                 nome.Text = null;
                 numero.Text = null;
-            }
+            } 
         }
         private void remove_Click(object sender, EventArgs e)
         {
@@ -85,8 +82,7 @@ namespace telehonicalista
 
         private void gridData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (gridData.SelectedCells.Count == 0)
-                return;
+            if (gridData.SelectedCells.Count == 0) return;
             cadastra.Text = "&Editar";
             int row = gridData.SelectedCells[0].RowIndex;
             nome.Text = gridData.Rows[row].Cells[1].Value.ToString();
