@@ -60,7 +60,6 @@
             btnBuscar.TabIndex = 2;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
-            btnBuscar.Click += button1_Click;
             // 
             // btnAdicionar
             // 
@@ -70,6 +69,7 @@
             btnAdicionar.TabIndex = 3;
             btnAdicionar.Text = "Adicionar";
             btnAdicionar.UseVisualStyleBackColor = true;
+            btnAdicionar.Click += btnAdicionar_Click;
             // 
             // btnRemover
             // 

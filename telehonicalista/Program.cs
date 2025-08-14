@@ -1,3 +1,5 @@
+using telehonicalista.Views;
+
 namespace telehonicalista
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace telehonicalista
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new telefonica());
+            Application.Run(new FrmPrincipal());
         }
     }
 }

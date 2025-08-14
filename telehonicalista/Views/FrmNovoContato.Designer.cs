@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             txtNome = new TextBox();
-            txtTelefone = new TextBox();
             Nome = new Label();
             label2 = new Label();
             btnSave = new Button();
+            txtTelefone = new MaskedTextBox();
             SuspendLayout();
             // 
             // txtNome
@@ -41,13 +41,6 @@
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(224, 23);
             txtNome.TabIndex = 0;
-            // 
-            // txtTelefone
-            // 
-            txtTelefone.Location = new Point(81, 52);
-            txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(224, 23);
-            txtTelefone.TabIndex = 1;
             // 
             // Nome
             // 
@@ -75,6 +68,15 @@
             btnSave.TabIndex = 4;
             btnSave.Text = "Salvar";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            // 
+            // txtTelefone
+            // 
+            txtTelefone.Location = new Point(81, 55);
+            txtTelefone.Mask = "(999) 0000-0000";
+            txtTelefone.Name = "txtTelefone";
+            txtTelefone.Size = new Size(224, 23);
+            txtTelefone.TabIndex = 5;
             // 
             // FrmNovoContato
             // 
@@ -82,10 +84,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 179);
             ControlBox = false;
+            Controls.Add(txtTelefone);
             Controls.Add(btnSave);
             Controls.Add(label2);
             Controls.Add(Nome);
-            Controls.Add(txtTelefone);
             Controls.Add(txtNome);
             Name = "FrmNovoContato";
             Text = "FrmNovoContato";
@@ -97,9 +99,9 @@
         #endregion
 
         private TextBox txtNome;
-        private TextBox txtTelefone;
         private Label Nome;
         private Label label2;
         private Button btnSave;
+        private MaskedTextBox txtTelefone;
     }
 }
