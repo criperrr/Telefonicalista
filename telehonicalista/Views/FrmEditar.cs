@@ -7,19 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using telehonicalista.Models;
+using telehonicalista.Presenters;
 
 namespace telehonicalista.Views
 {
     public partial class FrmEditar : Form
     {
-        public FrmEditar()
+        ContatoPresenter presenter;
+        Contato edicao;
+        public FrmEditar(ContatoPresenter presenter, Contato edicao)
         {
             InitializeComponent();
+
+            this.presenter = presenter;
+            this.edicao = edicao;
+
+            txtNome.Text = edicao.Nome;
+            txtTel.Text = edicao.Telefone;
         }
-
-        private void FrmEditar_Load(object sender, EventArgs e)
+        private void btnSalvar_Click(object sender, EventArgs e)
         {
+            string nome = txtNome.Text.Trim();
+            string telefone = txtTel.Text;
 
+            if (nome.Length == 0 || !txtTel.MaskCompleted)
+            {
+                MessageBox.Show("Preencha os campos corretamente!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            edicao.Nome = nome;
+            edicao.Telefone = telefone;
+            presenter.EditarContato(edicao);
+            this.Close();
         }
     }
 }

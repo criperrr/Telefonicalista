@@ -28,29 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            textBox1 = new TextBox();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nomeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            telefoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            contatoBindingSource1 = new BindingSource(components);
+            contatoBindingSource = new BindingSource(components);
+            txtBusca = new TextBox();
             btnBuscar = new Button();
             btnAdicionar = new Button();
             btnRemover = new Button();
             btnEditar = new Button();
+            cmbBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)contatoBindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)contatoBindingSource).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn, telefoneDataGridViewTextBoxColumn });
+            dataGridView1.DataSource = contatoBindingSource1;
             dataGridView1.Location = new Point(12, 44);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(776, 365);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
-            // textBox1
+            // idDataGridViewTextBoxColumn
             // 
-            textBox1.Location = new Point(12, 12);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(695, 23);
-            textBox1.TabIndex = 1;
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // nomeDataGridViewTextBoxColumn
+            // 
+            nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
+            nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
+            nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
+            // 
+            // telefoneDataGridViewTextBoxColumn
+            // 
+            telefoneDataGridViewTextBoxColumn.DataPropertyName = "Telefone";
+            telefoneDataGridViewTextBoxColumn.HeaderText = "Telefone";
+            telefoneDataGridViewTextBoxColumn.Name = "telefoneDataGridViewTextBoxColumn";
+            // 
+            // contatoBindingSource1
+            // 
+            contatoBindingSource1.DataSource = typeof(Models.Contato);
+            // 
+            // contatoBindingSource
+            // 
+            contatoBindingSource.DataSource = typeof(Models.Contato);
+            // 
+            // txtBusca
+            // 
+            txtBusca.Location = new Point(140, 11);
+            txtBusca.Name = "txtBusca";
+            txtBusca.Size = new Size(567, 23);
+            txtBusca.TabIndex = 1;
             // 
             // btnBuscar
             // 
@@ -60,6 +99,7 @@
             btnBuscar.TabIndex = 2;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // btnAdicionar
             // 
@@ -79,6 +119,7 @@
             btnRemover.TabIndex = 4;
             btnRemover.Text = "Remover";
             btnRemover.UseVisualStyleBackColor = true;
+            btnRemover.Click += btnRemover_Click;
             // 
             // btnEditar
             // 
@@ -88,21 +129,37 @@
             btnEditar.TabIndex = 5;
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
+            // 
+            // cmbBox
+            // 
+            cmbBox.FormattingEnabled = true;
+            cmbBox.Items.AddRange(new object[] { "none", "Id", "Nome", "Telefone" });
+            cmbBox.Location = new Point(13, 12);
+            cmbBox.Name = "cmbBox";
+            cmbBox.Size = new Size(121, 23);
+            cmbBox.TabIndex = 6;
+            cmbBox.Text = "select one";
+            cmbBox.SelectedIndexChanged += cmbBox_SelectedIndexChanged;
             // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cmbBox);
             Controls.Add(btnEditar);
             Controls.Add(btnRemover);
             Controls.Add(btnAdicionar);
             Controls.Add(btnBuscar);
-            Controls.Add(textBox1);
+            Controls.Add(txtBusca);
             Controls.Add(dataGridView1);
             Name = "FrmPrincipal";
             Text = "FrmPrincipal";
+            Load += FrmPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)contatoBindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)contatoBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -110,10 +167,16 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private TextBox textBox1;
+        private TextBox txtBusca;
         private Button btnBuscar;
         private Button btnAdicionar;
         private Button btnRemover;
         private Button btnEditar;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn telefoneDataGridViewTextBoxColumn;
+        private BindingSource contatoBindingSource;
+        private BindingSource contatoBindingSource1;
+        private ComboBox cmbBox;
     }
 }
